@@ -4,8 +4,6 @@
 
 <?php include 'includes/auth.php'; ?>
 <?php include 'includes/common-header.php' ?>
-
-
 <div class="main-content">
 
     <div class="page-content">
