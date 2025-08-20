@@ -89,6 +89,10 @@ p {
   background-color: #fff;
 }
 
+.form-select:focus{
+  box-shadow: none;
+}
+
 /* ---- Property Listing Css----- */
 
 .offplan-heading {
