@@ -1070,6 +1070,9 @@
 <!-- App js -->
 <script src="assets/js/app.js"></script>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 
 
 
@@ -1088,28 +1091,36 @@
 
 
 
-
+<script>
+    var swiper1 = new Swiper(".mySwiper1", {
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        loop: true,
+    });
+</script>
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Delete User
         let deleteId = null;
         document.querySelectorAll(".remove-item-btn").forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function () {
                 deleteId = this.getAttribute("data-id");
             });
         });
 
-        document.getElementById("delete-record").addEventListener("click", function() {
+        document.getElementById("delete-record").addEventListener("click", function () {
             if (deleteId) {
                 fetch("delete_user.php", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: "id=" + deleteId
-                    })
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "id=" + deleteId
+                })
                     .then(res => res.text())
                     .then(data => {
                         if (data === "success") {
@@ -1123,7 +1134,7 @@
 
         // Edit User (Load data into modal)
         document.querySelectorAll(".edit-item-btn").forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function () {
                 let row = this.closest("tr");
                 document.getElementById("name-field").value = row.querySelector(".name").innerText;
                 document.getElementById("username-field").value = row.querySelector(".username").innerText;
@@ -1145,6 +1156,65 @@
 </script>
 
 
+<!-- 
+<script>
+    (function () {
+        'use strict'
+
+        const form = document.getElementById('propertyForm');
+        const errorMessages = form.querySelectorAll('.error-msg');
+
+        errorMessages.forEach(msg => msg.style.display = 'none');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let isValid = true;
+
+            form.querySelectorAll('input, textarea, select').forEach(input => {
+                const errorMsg = input.parentElement.querySelector('.error-msg');
+                if (input.checkValidity() === false) {
+                    isValid = false;
+                    if (errorMsg) errorMsg.style.display = 'block';
+                } else {
+                    if (errorMsg) errorMsg.style.display = 'none';
+                }
+            });
+
+            if (isValid) {
+                alert("Form submitted successfully!");
+                form.reset();
+            }
+        });
+    })()
+</script> -->
+
+
+
+<script>
+    function showFileName(input) {
+        const fileName = input.files[0] ? input.files[0].name : '';
+        document.getElementById('file-name-' + input.id).textContent = fileName;
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        event.currentTarget.classList.add('dragover');
+    }
+
+    function handleDragLeave(event) {
+        event.currentTarget.classList.remove('dragover');
+    }
+
+    function handleDrop(event, inputId) {
+        event.preventDefault();
+        event.currentTarget.classList.remove('dragover');
+        const files = event.dataTransfer.files;
+        if (files.length) {
+            document.getElementById(inputId).files = files;
+            showFileName(document.getElementById(inputId));
+        }
+    }
+</script>
 
 
 

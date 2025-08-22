@@ -1,274 +1,146 @@
+<?php 
+include 'includes/auth.php'; 
+include 'includes/common-header.php'; 
+include 'config.php';
 
-<?php include 'includes/auth.php'; ?>
+// fetch latest property
+$result = $conn->query("SELECT * FROM properties ORDER BY id DESC LIMIT 1");
+$property = $result->fetch_assoc();
+?>
 
-<?php include 'includes/common-header.php' ?>
 <div class="main-content">
-
     <div class="page-content">
 
-    <section class="property-gallery-section">
-            <div class="container-fluid-fluid">
-                <div class="row g-3">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10 text-center">
+                        <div class="hero-description">
+                            <h1><?= $property['project_name']; ?></h1>
+                            <p><?= $property['description']; ?></p>
+                        </div>
+                        <div class="cta-button">
+                            <?php if(!empty($property['brochure'])): ?>
+                                <a href="uploads/<?= $property['brochure']; ?>" target="_blank" class="gradient-btn btn-yellow-white">Download Brochure</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="community-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Left Column (Stats) -->
+                    <div class="col-md-5">
+                        <p>Starting Price</p>
+                        <h5><?= $property['starting_price']; ?></h5>
+
+                        <p>Payment Plan</p>
+                        <h5><?= $property['payment_plan']; ?></h5>
+
+                        <p>Project Handover</p>
+                        <h5><?= $property['handover']; ?></h5>
+                    </div>
+
+                    <!-- Right Column (Content) -->
+                    <div class="col-md-7">
+                        <div class="texture-right">
+                            <h2 class="heading-title"><span class="whiteYellow"><?= $property['project_heading']; ?></span></h2>
+                            <p><?= $property['project_details']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="property-gallery-section">
+            <div class="container-fluid">
+                <div class="row">
                     <div class="col-12 col-lg-8 position-relative">
-                        <img src="https://d33om22pidobo4.cloudfront.net/projects/featuredimages/frame-37160png-343fecfa-3bee-4958-897c-d71777a0bcb2.png?d=1000x666&f=webp"
-                            alt="Building" class="img-fluid w-100 rounded">
-                        <!-- <div class="gallery-buttons">
-                    <button class="gallery-btn photos-btn">Photos</button>
-                    <button class="gallery-btn brochure-btn">Brochure</button>
-                </div> -->
+                        <?php if(!empty($property['main_picture'])): ?>
+                            <img src="uploads/<?= $property['main_picture']; ?>" alt="Main Picture" class="img-fluid w-100 rounded">
+                        <?php endif; ?>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="row g-3">
                             <div class="col-12">
-                                <img src="https://d33om22pidobo4.cloudfront.net/projects/gallery/4jpg-727f9584-8b71-47df-add6-acced22a441d.jpg?d=500x333&f=webp"
-                                    alt="Jacuzzi" class="img-fluid w-100 rounded">
+                                <?php if(!empty($property['image2'])): ?>
+                                    <img src="uploads/<?= $property['image2']; ?>" alt="Image 2" class="img-fluid w-100 rounded">
+                                <?php endif; ?>
                             </div>
                             <div class="col-12">
-                                <img src="https://d33om22pidobo4.cloudfront.net/projects/gallery/5jpg-dbb4e1d6-8f7d-44cf-8660-e93edec0a993.jpg?d=500x333&f=webp"
-                                    alt="Living room" class="img-fluid w-100 rounded">
+                                <?php if(!empty($property['image3'])): ?>
+                                    <img src="uploads/<?= $property['image3']; ?>" alt="Image 3" class="img-fluid w-100 rounded">
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <section id="property-details">
-            <div class="container-fluid">
-                <div class="row">
+        <!-- Amenities Section -->
+        <section class="property-amenities">
+            <div class="container">
+                <div class="row text-center mb-4">
                     <div class="col-12">
-                        <h2>
-                            AED 11,500,000
-                            <small style="font-size:16px;">AED <img src="assets/icons/down-arrow.png" alt="dropdown" width="14"></small>
-                        </h2>
-                        <div class="mortgage-box">
-                            Estimated Mortgage AED 53356.29/Month.
-                        </div>
-                        <div class="title">Waterfront | Luxurious Living | Genuine Resale</div>
-                        <div class="location">Dubai - Deira - Dubai Islands - Bay Residences</div>
+                        <h2 class="heading-title"><span class="whiteYellow">Amenities</span></h2>
                     </div>
                 </div>
-
-                <div class="row mt-3">
-                    <div class="col-md-3 col-6 d-flex align-items-center">
-                        <div class="info-item">
-                            <img src="assets/icons/bed.png" alt="bed" width="22" class="me-2"> 2 Bed
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 d-flex align-items-center">
-                        <div class="info-item">
-                            <img src="assets/icons/bathroom.png" alt="bath" width="22" class="me-2"> 3 Bath
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 d-flex align-items-center">
-                        <div class="info-item">
-                            <img src="assets/icons/area.png" alt="area" width="22" class="me-2"> 4065 sq-ft
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6 d-flex align-items-center">
-                        <div class="info-item">
-                            <img src="assets/icons/offplan.png" alt="status" width="22" class="me-2"> Status: OffPlan
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="project-info">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <!-- Left Info -->
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-4 mb-4">
-                                <h5 class="text-danger ">8.5M</h5>
-                                <p class="mb-0">Starting price (AED)</p>
-                            </div>
-                            <div class="col-4 mb-4">
-                                <h5 class="">702</h5>
-                                <p class="mb-0">Starting area (ft²)</p>
-                            </div>
-                            <div class="col-4 mb-4">
-                                <h5 class="">Q1 2029</h5>
-                                <p class="mb-0">Handover</p>
-                            </div>
-                            <div class="col-4 mb-4">
-                                <h5 class="">131</h5>
-                                <p class="mb-0">Floors</p>
-                            </div>
-                            <div class="col-4 mb-4">
-                                <h5 class="">1 - 5</h5>
-                                <p class="mb-0">Bedrooms</p>
-                            </div>
-                            <div class="col-4 mb-4">
-                                <h5 class="">80/20</h5>
-                                <p class="mb-0">Payment plan</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Description -->
-                    <div class="col-md-4">
-                        <p>
-                            Burj Azizi is a grand new project by Azizi Development located on Dubai's main road, Sheikh Zayed Road,
-                            in the Dubai World Trade Centre area. The project offers 1-3 bedroom apartments and 2-5 bedroom penthouses
-                            for sale. Residents will have access to swimming pools.
-                        </p>
-                        <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Make an Enquiry</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        
-
-        <section id="floor-plans">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="heading-title">The <span>Weave | Al Ghurair | Jumeirah Village Circle,</span> Dubai</h2>
-                    </div>
-                </div>
-                <!-- Tabs -->
-                <ul class="nav nav-pills justify-content-center" id="plans-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="tab-1-btn" data-bs-toggle="pill" data-bs-target="#tab-1" type="button" role="tab" aria-controls="tab-1" aria-selected="true">1 Bedroom</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="tab-2-btn" data-bs-toggle="pill" data-bs-target="#tab-2" type="button" role="tab" aria-controls="tab-2" aria-selected="false">2 Bedroom</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="tab-3-btn" data-bs-toggle="pill" data-bs-target="#tab-3" type="button" role="tab" aria-controls="tab-3" aria-selected="false">3 Bedroom</button>
-                    </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content" id="plans-tabContent">
-                    <!-- 1 Bedroom -->
-                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1-btn">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="left-tab">
-                                    <h5 class="total--area">Total Area</h5>
-                                    <p>Approx. 808 to 2,295 sq ft (≈ 75–213 m²) office units.</p>
-                                    <p class="">Price from,</p>
-                                    <h5 class="">AED 3,500,000</h5>
-                                    <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Explore Full Floor Plan</a>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <img src="https://a.storyblok.com/f/165304/762x726/1beddd4474/gardenia-bay-floor-plan.png" alt="1 Bedroom Plan" class="img-fluid rounded">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2 Bedroom -->
-                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2-btn">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="left-tab">
-                                    <h5 class="total--area">Total Area</h5>
-                                    <p>Approx. 1200 to 2800 sq ft (≈ 110–260 m²).</p>
-                                    <p class="">Price from,</p>
-                                    <h5 class="">AED 5,200,000</h5>
-                                    <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Explore Full Floor Plan</a>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <img src="https://a.storyblok.com/f/165304/668x690/d73ba1d330/gardenia-bay-floor-plan.png" alt="2 Bedroom Plan" class="img-fluid rounded">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3 Bedroom -->
-                    <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3-btn">
-                        <div class="row align-items-center">
-                            <div class="col-md-6">
-                                <div class="left-tab">
-                                    <h5 class="total--area">Total Area</h5>
-                                    <p>Approx. 1600 to 3500 sq ft (≈ 150–325 m²).</p>
-                                    <p class="">Price from,</p>
-                                    <h5 class="">AED 7,000,000</h5>
-                                    <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Explore Full Floor Plan</a>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <img src="https://a.storyblok.com/f/165304/996x668/1a83678dd5/gardenia-bay-floor-plan.png" alt="3 Bedroom Plan" class="img-fluid rounded">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="amenities">
-            <div class="container-fluid text-center">
-                <h2 class="heading-title">Key <span>Amenities of Aspirz by</span> Danube Properties</h2>
                 <div class="row g-4">
-
-                    <!-- Item 1 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Indoor Gym" class="img-fluid mb-3" width="50">
-                            <p>Indoor Gym with Shower</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Padel Court" class="img-fluid mb-3" width="50">
-                            <p>Padel Tennis Court</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Business Cafe" class="img-fluid mb-3" width="50">
-                            <p>Business Cafe</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Indoor Cinema" class="img-fluid mb-3" width="50">
-                            <p>Indoor Cinema</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Outdoor Gym" class="img-fluid mb-3" width="50">
-                            <p>Outdoor Gym</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="col-6 col-md-2">
-                        <div class="amenity-item">
-                            <img src="assets/icons/indoorgym.png" alt="Games Room" class="img-fluid mb-3" width="50">
-                            <p>Games Room</p>
-                        </div>
-                    </div>
-
+                    <?php 
+                    if(!empty($property['amenities'])) {
+                        $amenities = explode(",", $property['amenities']);
+                        foreach($amenities as $amenity): ?>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="amenity-box">
+                                    <img src="assets/icons/gym.png" alt="Amenity">
+                                    <p><?= trim($amenity); ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; 
+                    } ?>
                 </div>
             </div>
         </section>
 
+        <!-- Floorplan Section -->
+        <div class="floorplan-container">
+            <div class="floorplan-left">
+                <div class="swiper mySwiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <?php if(!empty($property['floor_plan'])): ?>
+                                <img src="uploads/<?= $property['floor_plan']; ?>" alt="Floorplan">
+                            <?php endif; ?>
+                            <div class="floorplan-details">
+                                <div><strong><?= $property['starting_price']; ?></strong> Starting Price (Floor Plan)</div>
+                                <div><strong><?= $property['aed_per_sqft']; ?></strong> AED per Sqft</div>
+                                <div><strong><?= $property['starting_area']; ?></strong> Starting area</div>
+                            </div>
+                            <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank" class="gradient-btn btn-green-glossy mt-3">View Floor Plan</a>
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev">&#8592;</div>
+                    <div class="swiper-button-next">&#8594;</div>
+                </div>
+            </div>
+
+            <div class="floorplan-right">
+                <h3>Get all the floor plans <br> and the best offers in this project</h3>
+                <img src="https://houzzhunt.com/assets/images/homepage/help-contact.webp" alt="3D Plan 1">
+                <button class="right-btn">→</button>
+            </div>
+        </div>
 
         <!-- Payment Plan Section -->
-        <section class="payment-plan-section">
-            <div class="container-fluid">
+        <section class="payment-plan-section d-none">
+            <div class="container">
                 <div class="row justify-content-center mb-4">
                     <div class="col-12 text-center">
                         <h2 class="payment-title heading-title"><span>Payment Plan</span></h2>
@@ -302,7 +174,7 @@
 
         <!-- Nearby Places Section -->
         <section class="nearby-places">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row justify-content-center mb-4">
                     <div class="col-12 text-center mt-4">
                         <h2 class="heading-title"><span>Nearby Places of Aspirz at Dubai Sports City</span></h2>
@@ -310,14 +182,10 @@
                 </div>
 
                 <!-- Google Map -->
-                <div class="map-container-fluid mb-4">
+                <div class="map-container mb-4">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115619.66473777338!2d55.17128!3d25.204849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f434f8dfdf0b7%3A0x28f3f8b35e5a2c2c!2sDubai!5e0!3m2!1sen!2sae!4v1692184877643!5m2!1sen!2sae"
-                        width="100%"
-                        height="400"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
+                        width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
@@ -347,8 +215,56 @@
             </div>
         </section>
 
+        <!-- Contact Section -->
+        <section class="contact-section d-none">
+            <div class="container">
+                <div class="row g-0 shadow rounded overflow-hidden">
+
+                    <!-- Left Form Side -->
+                    <div class="col-md-7" style="background-color: #FFF3DE;">
+                        <div class="consultantSection animate fadeInUp wow">
+                            <div class="p-5 h-100 d-flex flex-column justify-content-center">
+                                <h2 class="">Let’s Start Your<br>Real Estate Journey</h2>
+                                <p class="text-muted mb-4">Feel free to contact us anytime</p>
+                                <form class="BookConsultant">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control  bg-transparent rounded-0"
+                                            placeholder="Name" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="tel" class="form-control bg-transparent rounded-0"
+                                            placeholder="Phone" required>
+                                    </div>
+                                    <!-- <button type="submit" class="btn btn-secondary btn-theme w-100">Schedule a Call</button> -->
+                                    <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Schedule a
+                                        Call</a>
+                                </form>
+                                <div class="d-flex gap-3 mt-4 justify-content-center">
+                                    <a href="#" class="btn rounded-pill px-3 d-flex align-items-center gap-0">
+                                        <img src="assets/icons/linkedin.png" alt="Telegram"
+                                            style="width: 20px; height: 20px;" class="me-2">LinkedIn
+                                    </a>
+                                    <a href="#" class="btn rounded-pill px-3 d-flex align-items-center gap-0">
+                                        <img src="assets/icons/whatsapp-color.png" alt="WhatsApp"
+                                            style="width: 20px; height: 20px;" class="me-2">WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Image Side -->
+                    <div class="col-md-5">
+                        <img src="assets/images/banner/know-more-about.webp"
+                            class="img-fluid h-100 w-100 animate fadeInUp wow" alt="Contact Us">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <section class="related-properties">
-            <div class="container-fluid">
+            <div class="container">
 
                 <div class="row justify-content-center mb-4">
                     <div class="col-12 text-center">
@@ -360,8 +276,9 @@
 
                     <!-- Property Card 1 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="card  shadow-sm border-0">
-                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/ADDRESS_VILLAS_TIERRA_hausandhaus_2_154caeebd6.webp" class="card-img-top" alt="Belmont Residences">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/ADDRESS_VILLAS_TIERRA_hausandhaus_2_154caeebd6.webp"
+                                class="card-img-top" alt="Belmont Residences">
                             <div class="card-body">
                                 <h6 class=" mb-1">Belmont Residences</h6>
                                 <p class="mb-0 text-muted small">by ELLINGTON</p>
@@ -371,8 +288,9 @@
 
                     <!-- Property Card 2 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="card  shadow-sm border-0">
-                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/OASIS_PALMIERA_x_hausandhaus_1_e125317ee0.webp" class="card-img-top" alt="FH Residency">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/OASIS_PALMIERA_x_hausandhaus_1_e125317ee0.webp"
+                                class="card-img-top" alt="FH Residency">
                             <div class="card-body">
                                 <h6 class=" mb-1">FH Residency</h6>
                                 <p class="mb-0 text-muted small">by Forum Real Estate Development</p>
@@ -382,8 +300,9 @@
 
                     <!-- Property Card 3 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="card  shadow-sm border-0">
-                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/The_Oasis_Mirage_7df4992efc.webp" class="card-img-top" alt="Elaya">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/The_Oasis_Mirage_7df4992efc.webp"
+                                class="card-img-top" alt="Elaya">
                             <div class="card-body">
                                 <h6 class=" mb-1">Elaya</h6>
                                 <p class="mb-0 text-muted small">by Nshama</p>
@@ -393,8 +312,9 @@
 
                     <!-- Property Card 4 -->
                     <div class="col-md-3 col-sm-6">
-                        <div class="card  shadow-sm border-0">
-                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/19560_photo_1628518170.webp" class="card-img-top" alt="Gardenia Bay">
+                        <div class="card h-100 shadow-sm border-0">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/19560_photo_1628518170.webp"
+                                class="card-img-top" alt="Gardenia Bay">
                             <div class="card-body">
                                 <h6 class=" mb-1">Gardenia Bay</h6>
                                 <p class="mb-0 text-muted small">by ALDAR</p>
@@ -406,10 +326,89 @@
             </div>
         </section>
 
-    </div>
-    <!-- End Page-content -->
 
+        <section class="mortgage-section py-5">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Card 1 -->
+                    <div class="col-md-4">
+                        <div class="card custom-card text-white">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/ADDRESS_VILLAS_TIERRA_hausandhaus_2_154caeebd6.webp"
+                                class="card-img" alt="Getting a Mortgage">
+                            <div class="card-overlay"></div>
+                            <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-uppercase">Getting a Mortgage</h5>
+                                <p class="card-text text-capitalize">
+                                    Mira mortgage is a perfect key for your dream home opportunities
+                                </p>
+                                <div class="mt-2">
+                                    <a href="#" class="btn btn-light rounded-circle">
+                                        <span>&#8594;</span>
+                                    </a>
+                                </div>
+                                <div class="mt-auto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREpBayBrjFn05lN_5dEYqebr4DpAIVRR5F8Q&s"
+                                        alt="Mira Logo" class="img-fluid" style="max-height: 30px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="col-md-4">
+                        <div class="card custom-card text-white">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/ADDRESS_VILLAS_TIERRA_hausandhaus_2_154caeebd6.webp"
+                                class="card-img" alt="Getting a Mortgage">
+                            <div class="card-overlay"></div>
+                            <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-uppercase">Getting a Mortgage</h5>
+                                <p class="card-text text-capitalize">
+                                    Mira mortgage is a perfect key for your dream home opportunities
+                                </p>
+                                <div class="mt-2">
+                                    <a href="#" class="btn btn-light rounded-circle">
+                                        <span>&#8594;</span>
+                                    </a>
+                                </div>
+                                <div class="mt-auto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREpBayBrjFn05lN_5dEYqebr4DpAIVRR5F8Q&s"
+                                        alt="Mira Logo" class="img-fluid" style="max-height: 30px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+
+                    <div class="col-md-4">
+                        <div class="card custom-card text-white">
+                            <img src="https://ggfx-handh3.s3.eu-west-2.amazonaws.com/x/750x506/ADDRESS_VILLAS_TIERRA_hausandhaus_2_154caeebd6.webp"
+                                class="card-img" alt="Getting a Mortgage">
+                            <div class="card-overlay"></div>
+                            <div class="card-img-overlay d-flex flex-column justify-content-center text-center">
+                                <h5 class="card-title text-uppercase">Getting a Mortgage</h5>
+                                <p class="card-text text-capitalize">
+                                    Mira mortgage is a perfect key for your dream home opportunities
+                                </p>
+                                <div class="mt-2">
+                                    <a href="#" class="btn btn-light rounded-circle">
+                                        <span>&#8594;</span>
+                                    </a>
+                                </div>
+                                <div class="mt-auto">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREpBayBrjFn05lN_5dEYqebr4DpAIVRR5F8Q&s"
+                                        alt="Mira Logo" class="img-fluid" style="max-height: 30px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
     <?php include 'includes/footer.php' ?>
 </div>
 
-<?php include 'includes/common-footer.php' ?>
+<?php include 'includes/common-footer.php'; ?>

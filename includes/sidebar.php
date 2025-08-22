@@ -27,11 +27,10 @@
     </div>
 
     <div class="dropdown sidebar-user m-1 rounded">
-        <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             <span class="d-flex align-items-center gap-2">
-                <img class="rounded header-profile-user" src="assets/images/users/avatar-1.jpg"
-                    alt="Header Avatar">
+                <img class="rounded header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                 <span class="text-start">
                     <span class="d-block fw-medium sidebar-user-name-text">Anna Adame</span>
                     <span class="d-block fs-14 sidebar-user-name-sub-text"><i
@@ -57,8 +56,8 @@
                     class="align-middle">Help</span></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="pages-profile.html"><i
-                    class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span
-                    class="align-middle">Balance : <b>$5971.67</b></span></a>
+                    class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Balance :
+                    <b>$5971.67</b></span></a>
             <a class="dropdown-item" href="pages-profile-settings.html"><span
                     class="badge bg-success-subtle text-success mt-1 float-end">New</span><i
                     class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
@@ -87,7 +86,7 @@
                     </a>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarPages">
                         <i class="ri-pages-line"></i> <span data-key="t-pages">Properties</span>
@@ -97,13 +96,13 @@
                             <li class="nav-item">
                                 <a href="all-properties.php" class="nav-link" data-key="t-starter"> All Properties </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="pages-starter.html" class="nav-link" data-key="t-starter"> Edit Properties </a>
-                            </li>
                             <li class="nav-item">
+                                <a href="add-property.php" class="nav-link" data-key="t-starter"> Add Properties </a>
+                            </li>
+                            <!-- <li class="nav-item">
                                 <a href="pages-starter.html" class="nav-link" data-key="t-starter"> View Properties </a>
                             </li> -->
-                            
+
                             <!-- <li class="nav-item">
                                 <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
                                 </a>
@@ -876,7 +875,7 @@
                     </div>
                 </li> -->
 
-               
+
 
                 <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button"
