@@ -76,6 +76,7 @@ CREATE TABLE `leads` (
   `phone` varchar(20) DEFAULT NULL,
   `property_id` int(11) DEFAULT NULL,
   `message` text,
+  `status` enum('New','Contacted','Qualified','Lost') NOT NULL DEFAULT 'New',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
