@@ -3,7 +3,10 @@ include 'includes/auth.php';
 include 'config.php';
 
 $current = $_SESSION['user_id'];
-$res = $conn->query("SELECT id, name, last_active FROM users WHERE id <> $current");
+$stmt = $conn->prepare("SELECT id, name, last_active FROM users WHERE id <> ?");
+$stmt->bind_param("i", $current);
+$stmt->execute();
+$res = $stmt->get_result();
 $users = [];
 while ($row = $res->fetch_assoc()) {
     $online = false;
