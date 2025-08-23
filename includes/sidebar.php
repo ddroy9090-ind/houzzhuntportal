@@ -1,4 +1,15 @@
-<?php $userName = htmlspecialchars($_SESSION['name'] ?? 'User'); $userRole = htmlspecialchars($_SESSION['role'] ?? ''); ?>
+<?php
+include_once __DIR__ . '/../config.php';
+$userName = htmlspecialchars($_SESSION['name'] ?? 'User');
+$userRole = htmlspecialchars($_SESSION['role'] ?? '');
+$propertyMapData = [];
+$propResult = $conn->query("SELECT project_name, location FROM properties");
+if ($propResult) {
+    while ($row = $propResult->fetch_assoc()) {
+        $propertyMapData[] = $row;
+    }
+}
+?>
 <!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
@@ -186,6 +197,9 @@
                 </li>
 
             </ul>
+            <div class="p-3">
+                <div id="sidebar-map" style="height:200px;"></div>
+            </div>
         </div>
         <!-- Sidebar -->
     </div>
@@ -193,3 +207,25 @@
     <div class="sidebar-background"></div>
 </div>
 <!-- Left Sidebar End -->
+
+<script>
+window.addEventListener('load', function () {
+    var map = L.map('sidebar-map').setView([25.276987, 55.296249], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19
+    }).addTo(map);
+    var properties = <?php echo json_encode($propertyMapData); ?>;
+    properties.forEach(function (p) {
+        if (p.location) {
+            fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(p.location))
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    if (data[0]) {
+                        L.marker([data[0].lat, data[0].lon]).addTo(map).bindPopup(p.project_name);
+                    }
+                })
+                .catch(function (err) { console.error('Geocoding error', err); });
+        }
+    });
+});
+</script>
