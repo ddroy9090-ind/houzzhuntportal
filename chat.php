@@ -23,6 +23,9 @@ include 'config.php';
                 </div>
                 <div class="col-md-8">
                     <div id="chatBox" style="height:400px; overflow-y:auto; border:1px solid #dee2e6; padding:10px; margin-bottom:10px;"></div>
+                    <div class="mb-2">
+                        <input type="file" id="attachmentInput" class="form-control">
+                    </div>
                     <div class="input-group">
                         <input type="text" id="messageInput" class="form-control" placeholder="Type a message">
                         <button class="btn btn-primary" id="sendBtn">Send</button>
