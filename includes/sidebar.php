@@ -86,6 +86,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="chat.php">
+                        <i class="ri-chat-3-line"></i> <span data-key="t-chat">Chat</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarPages">
                         <i class="ri-pages-line"></i> <span data-key="t-pages">Properties</span>
