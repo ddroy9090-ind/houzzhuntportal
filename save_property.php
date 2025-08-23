@@ -91,24 +91,14 @@ if (
     die("Bind failed: " . $stmt->error);
 }
 if ($stmt->execute()) {
-    echo "<script>
-                alert('✅ Form submitted successfully!');
-                window.onload = function() {
-                    document.getElementById('propertyForm').reset();
-                }
-              </script>";
+    // Redirect to the newly added property's detail page
+    $newId = $conn->insert_id;
+    $stmt->close();
+    $conn->close();
+    header("Location: property-details.php?id=" . $newId);
+    exit;
 } else {
+    $stmt->close();
+    $conn->close();
     echo "<script>alert('❌ Error while saving data');</script>";
 }
-
-// Show All Properties
-$result = $conn->query("SELECT * FROM properties ORDER BY id DESC");
-
-echo "<h2>Properties List</h2>";
-if ($result && $result->num_rows > 0) {
-    echo "Thank You For Submitting the Form";
-} else {
-    echo "<p>No properties found.</p>";
-}
-
-$conn->close();

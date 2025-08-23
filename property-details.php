@@ -3,9 +3,30 @@ include 'includes/auth.php';
 include 'includes/common-header.php';
 include 'config.php';
 
-// fetch latest property
-$result = $conn->query("SELECT * FROM properties ORDER BY id DESC LIMIT 1");
-$property = $result->fetch_assoc();
+// Fetch property by ID if provided; otherwise show latest property
+$property = null;
+$property_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+if ($property_id > 0) {
+    // Use prepared statement to safely fetch requested property
+    $stmt = $conn->prepare("SELECT * FROM properties WHERE id = ? LIMIT 1");
+    $stmt->bind_param('i', $property_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $property = $result->fetch_assoc();
+    $stmt->close();
+} else {
+    // Fall back to the most recent property
+    $result = $conn->query("SELECT * FROM properties ORDER BY id DESC LIMIT 1");
+    $property = $result->fetch_assoc();
+}
+
+// If no property found, stop rendering to avoid undefined index notices
+if (!$property) {
+    echo '<div class="main-content"><div class="page-content"><div class="container"><p>Property not found.</p></div></div></div>';
+    include 'includes/common-footer.php';
+    exit;
+}
 ?>
 
 <div class="main-content">
