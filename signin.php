@@ -30,6 +30,8 @@
             font-weight: 300;
         }
 
+        
+
         /* .login-wrapper h1 {
             color: #d4a83a;
             font-weight: bold;
