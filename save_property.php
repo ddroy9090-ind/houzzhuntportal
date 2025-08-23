@@ -30,7 +30,14 @@ $aed_per_sqft = $_POST['aed_per_sqft'] ?? '';
 $starting_area = $_POST['starting_area'] ?? '';
 $location = $_POST['location'] ?? '';
 $extra_text = $_POST['extra_text'] ?? '';
+$burj_al_arab = $_POST['burj_al_arab'] ?? '';
+$dubai_marina = $_POST['dubai_marina'] ?? '';
+$dubai_mall = $_POST['dubai_mall'] ?? '';
+$sheikh_zayed = $_POST['sheikh_zayed'] ?? '';
 $amenities = isset($_POST['amenities']) ? implode(", ", $_POST['amenities']) : "";
+
+
+
 
 // File uploads
 $brochure = uploadFile("brochure");
@@ -40,10 +47,11 @@ $image3 = uploadFile("image3");
 $image4 = uploadFile("image4");
 $floor_plan = uploadFile("floor_plan");
 
+
 // Insert Query
 $sql = "INSERT INTO properties 
-(project_name, description, sub_heading, brochure, project_heading, project_details, starting_price, payment_plan, handover, main_picture, image2, image3, image4, amenities, floor_plan, aed_per_sqft, starting_area, location, extra_text) 
-VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+(project_name, description, sub_heading, brochure, project_heading, project_details, starting_price, payment_plan, handover, main_picture, image2, image3, image4, amenities, floor_plan, aed_per_sqft, starting_area, location, extra_text, burj_al_arab, dubai_marina, dubai_mall, sheikh_zayed) 
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 $stmt = $conn->prepare($sql);
 
@@ -51,9 +59,10 @@ if ($stmt === false) {
     die("Prepare failed: " . $conn->error);
 }
 
+// bind_param → total 23 parameters, all treated as string "s"
 if (
     !$stmt->bind_param(
-        "sssssssssssssssssss",
+        "sssssssssssssssssssssss",  // 23 "s"
         $project_name,
         $description,
         $sub_heading,
@@ -72,12 +81,15 @@ if (
         $aed_per_sqft,
         $starting_area,
         $location,
-        $extra_text
+        $extra_text,
+        $burj_al_arab,
+        $dubai_marina,
+        $dubai_mall,
+        $sheikh_zayed
     )
 ) {
     die("Bind failed: " . $stmt->error);
 }
-
 if ($stmt->execute()) {
     echo "<script>
                 alert('✅ Form submitted successfully!');
@@ -94,57 +106,9 @@ $result = $conn->query("SELECT * FROM properties ORDER BY id DESC");
 
 echo "<h2>Properties List</h2>";
 if ($result && $result->num_rows > 0) {
-    echo "<table border='1' cellpadding='8' cellspacing='0'>
-            <tr>
-                <th>ID</th>
-                <th>Project Name</th>
-                <th>Sub Heading</th>
-                <th>Description</th>
-                <th>Project Heading</th>
-                <th>Project Details</th>
-                <th>Starting Price</th>
-                <th>Payment Plan</th>
-                <th>Handover</th>
-                <th>AED per Sqft</th>
-                <th>Starting Area</th>
-                <th>Location</th>
-                <th>Extra Info</th>
-                <th>Amenities</th>
-                <th>Brochure</th>
-                <th>Main Picture</th>
-                <th>Image 2</th>
-                <th>Image 3</th>
-                <th>Image 4</th>
-                <th>Floor Plan</th>
-            </tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . $row['id'] . "</td>
-                <td>" . $row['project_name'] . "</td>
-                <td>" . $row['sub_heading'] . "</td>
-                <td>" . $row['description'] . "</td>
-                <td>" . $row['project_heading'] . "</td>
-                <td>" . $row['project_details'] . "</td>
-                <td>" . $row['starting_price'] . "</td>
-                <td>" . $row['payment_plan'] . "</td>
-                <td>" . $row['handover'] . "</td>
-                <td>" . $row['aed_per_sqft'] . "</td>
-                <td>" . $row['starting_area'] . "</td>
-                <td>" . $row['location'] . "</td>
-                <td>" . $row['extra_text'] . "</td>
-                <td>" . $row['amenities'] . "</td>
-                <td>" . (!empty($row['brochure']) ? "<a href='uploads/" . $row['brochure'] . "' target='_blank'>View</a>" : "") . "</td>
-                <td>" . (!empty($row['main_picture']) ? "<img src='uploads/" . $row['main_picture'] . "' width='80'>" : "") . "</td>
-                <td>" . (!empty($row['image2']) ? "<img src='uploads/" . $row['image2'] . "' width='80'>" : "") . "</td>
-                <td>" . (!empty($row['image3']) ? "<img src='uploads/" . $row['image3'] . "' width='80'>" : "") . "</td>
-                <td>" . (!empty($row['image4']) ? "<img src='uploads/" . $row['image4'] . "' width='80'>" : "") . "</td>
-                <td>" . (!empty($row['floor_plan']) ? "<a href='uploads/" . $row['floor_plan'] . "' target='_blank'>View</a>" : "") . "</td>
-              </tr>";
-    }
-    echo "</table>";
+    echo "Thank You For Submitting the Form";
 } else {
     echo "<p>No properties found.</p>";
 }
 
 $conn->close();
-?>

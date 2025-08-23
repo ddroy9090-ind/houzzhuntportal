@@ -1,6 +1,6 @@
-<?php 
-include 'includes/auth.php'; 
-include 'includes/common-header.php'; 
+<?php
+include 'includes/auth.php';
+include 'includes/common-header.php';
 include 'config.php';
 
 // fetch latest property
@@ -18,11 +18,13 @@ $property = $result->fetch_assoc();
                     <div class="col-lg-8 col-md-10 text-center">
                         <div class="hero-description">
                             <h1><?= $property['project_name']; ?></h1>
+                            <h5><?= $property['sub_heading']; ?></h5>
                             <p><?= $property['description']; ?></p>
                         </div>
                         <div class="cta-button">
-                            <?php if(!empty($property['brochure'])): ?>
-                                <a href="uploads/<?= $property['brochure']; ?>" target="_blank" class="gradient-btn btn-yellow-white">Download Brochure</a>
+                            <?php if (!empty($property['brochure'])): ?>
+                                <a href="uploads/<?= $property['brochure']; ?>" target="_blank"
+                                    class="gradient-btn btn-yellow-white">Download Brochure</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -49,7 +51,8 @@ $property = $result->fetch_assoc();
                     <!-- Right Column (Content) -->
                     <div class="col-md-7">
                         <div class="texture-right">
-                            <h2 class="heading-title"><span class="whiteYellow"><?= $property['project_heading']; ?></span></h2>
+                            <h2 class="heading-title"><span
+                                    class="whiteYellow"><?= $property['project_heading']; ?></span></h2>
                             <p><?= $property['project_details']; ?></p>
                         </div>
                     </div>
@@ -62,20 +65,23 @@ $property = $result->fetch_assoc();
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-lg-8 position-relative">
-                        <?php if(!empty($property['main_picture'])): ?>
-                            <img src="uploads/<?= $property['main_picture']; ?>" alt="Main Picture" class="img-fluid w-100 rounded">
+                        <?php if (!empty($property['main_picture'])): ?>
+                            <img src="uploads/<?= $property['main_picture']; ?>" alt="Main Picture"
+                                class="img-fluid w-100 rounded">
                         <?php endif; ?>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="row g-3">
                             <div class="col-12">
-                                <?php if(!empty($property['image2'])): ?>
-                                    <img src="uploads/<?= $property['image2']; ?>" alt="Image 2" class="img-fluid w-100 rounded">
+                                <?php if (!empty($property['image2'])): ?>
+                                    <img src="uploads/<?= $property['image2']; ?>" alt="Image 2"
+                                        class="img-fluid w-100 rounded">
                                 <?php endif; ?>
                             </div>
                             <div class="col-12">
-                                <?php if(!empty($property['image3'])): ?>
-                                    <img src="uploads/<?= $property['image3']; ?>" alt="Image 3" class="img-fluid w-100 rounded">
+                                <?php if (!empty($property['image3'])): ?>
+                                    <img src="uploads/<?= $property['image3']; ?>" alt="Image 3"
+                                        class="img-fluid w-100 rounded">
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -93,17 +99,17 @@ $property = $result->fetch_assoc();
                     </div>
                 </div>
                 <div class="row g-4">
-                    <?php 
-                    if(!empty($property['amenities'])) {
+                    <?php
+                    if (!empty($property['amenities'])) {
                         $amenities = explode(",", $property['amenities']);
-                        foreach($amenities as $amenity): ?>
+                        foreach ($amenities as $amenity): ?>
                             <div class="col-md-4 col-sm-6">
                                 <div class="amenity-box">
                                     <img src="assets/icons/gym.png" alt="Amenity">
                                     <p><?= trim($amenity); ?></p>
                                 </div>
                             </div>
-                        <?php endforeach; 
+                        <?php endforeach;
                     } ?>
                 </div>
             </div>
@@ -115,15 +121,17 @@ $property = $result->fetch_assoc();
                 <div class="swiper mySwiper1">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <?php if(!empty($property['floor_plan'])): ?>
+                            <?php if (!empty($property['floor_plan'])): ?>
                                 <img src="uploads/<?= $property['floor_plan']; ?>" alt="Floorplan">
                             <?php endif; ?>
                             <div class="floorplan-details">
-                                <div><strong><?= $property['starting_price']; ?></strong> Starting Price (Floor Plan)</div>
+                                <div><strong><?= $property['starting_price']; ?></strong> Starting Price (Floor Plan)
+                                </div>
                                 <div><strong><?= $property['aed_per_sqft']; ?></strong> AED per Sqft</div>
                                 <div><strong><?= $property['starting_area']; ?></strong> Starting area</div>
                             </div>
-                            <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank" class="gradient-btn btn-green-glossy mt-3">View Floor Plan</a>
+                            <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank"
+                                class="gradient-btn btn-green-glossy mt-3">View Floor Plan</a>
                         </div>
                     </div>
                     <div class="swiper-button-prev">&#8592;</div>
@@ -137,6 +145,7 @@ $property = $result->fetch_assoc();
                 <button class="right-btn">→</button>
             </div>
         </div>
+
 
         <!-- Payment Plan Section -->
         <section class="payment-plan-section d-none">
@@ -172,6 +181,7 @@ $property = $result->fetch_assoc();
             </div>
         </section>
 
+
         <!-- Nearby Places Section -->
         <section class="nearby-places">
             <div class="container">
@@ -194,72 +204,25 @@ $property = $result->fetch_assoc();
                     <div class="col-md-3 col-6 mb-4">
                         <img src="assets/icons/location.png" width="50" alt="Burj Al Arab">
                         <h6 class="mt-2">Burj Al Arab</h6>
-                        <small class="text-muted">20 Minutes</small>
+                        <small class="text-muted"><?php echo $property['burj_al_arab']; ?> Minutes</small>
                     </div>
                     <div class="col-md-3 col-6 mb-4">
                         <img src="assets/icons/marina.png" width="50" alt="Dubai Marina">
                         <h6 class="mt-2">Dubai Marina</h6>
-                        <small class="text-muted">15 Minutes</small>
+                        <small class="text-muted"><?php echo $property['dubai_marina']; ?> Minutes</small>
                     </div>
                     <div class="col-md-3 col-6 mb-4">
                         <img src="assets/icons/phone.png" width="50" alt="Dubai Mall">
                         <h6 class="mt-2">Dubai Mall</h6>
-                        <small class="text-muted">20 Minutes</small>
+                        <small class="text-muted"><?php echo $property['dubai_mall']; ?> Minutes</small>
                     </div>
                     <div class="col-md-3 col-6 mb-4">
                         <img src="assets/icons/route.png" width="50" alt="Sheikh Zayed Road">
                         <h6 class="mt-2">Sheikh Zayed Road</h6>
-                        <small class="text-muted">12 Minutes</small>
+                        <small class="text-muted"><?php echo $property['sheikh_zayed']; ?> Minutes</small>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section class="contact-section d-none">
-            <div class="container">
-                <div class="row g-0 shadow rounded overflow-hidden">
-
-                    <!-- Left Form Side -->
-                    <div class="col-md-7" style="background-color: #FFF3DE;">
-                        <div class="consultantSection animate fadeInUp wow">
-                            <div class="p-5 h-100 d-flex flex-column justify-content-center">
-                                <h2 class="">Let’s Start Your<br>Real Estate Journey</h2>
-                                <p class="text-muted mb-4">Feel free to contact us anytime</p>
-                                <form class="BookConsultant">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control  bg-transparent rounded-0"
-                                            placeholder="Name" required>
-                                    </div>
-                                    <div class="mb-4">
-                                        <input type="tel" class="form-control bg-transparent rounded-0"
-                                            placeholder="Phone" required>
-                                    </div>
-                                    <!-- <button type="submit" class="btn btn-secondary btn-theme w-100">Schedule a Call</button> -->
-                                    <a href="javascript:void(0)" class="gradient-btn btn-green-glossy">Schedule a
-                                        Call</a>
-                                </form>
-                                <div class="d-flex gap-3 mt-4 justify-content-center">
-                                    <a href="#" class="btn rounded-pill px-3 d-flex align-items-center gap-0">
-                                        <img src="assets/icons/linkedin.png" alt="Telegram"
-                                            style="width: 20px; height: 20px;" class="me-2">LinkedIn
-                                    </a>
-                                    <a href="#" class="btn rounded-pill px-3 d-flex align-items-center gap-0">
-                                        <img src="assets/icons/whatsapp-color.png" alt="WhatsApp"
-                                            style="width: 20px; height: 20px;" class="me-2">WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Image Side -->
-                    <div class="col-md-5">
-                        <img src="assets/images/banner/know-more-about.webp"
-                            class="img-fluid h-100 w-100 animate fadeInUp wow" alt="Contact Us">
-                    </div>
-
-                </div>
             </div>
         </section>
 
