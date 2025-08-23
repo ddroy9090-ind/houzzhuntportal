@@ -168,6 +168,12 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="leads.php">
+                        <i class="ri-contacts-line"></i> <span data-key="t-leads">Leads</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="users.php">
                         <i class="ri-account-circle-line"></i> <span data-key="t-authentication">User</span>
                     </a>

@@ -66,6 +66,28 @@ INSERT INTO `properties` (`id`, `project_name`, `description`, `sub_heading`, `b
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `leads`
+--
+
+CREATE TABLE `leads` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `property_id` int(11) DEFAULT NULL,
+  `message` text,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leads`
+--
+
+-- No sample leads --
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -99,6 +121,13 @@ ALTER TABLE `properties`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `leads`
+--
+ALTER TABLE `leads`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `property_id` (`property_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -117,10 +146,22 @@ ALTER TABLE `properties`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `leads`
+--
+ALTER TABLE `leads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ 
+--
+-- Constraints for table `leads`
+--
+ALTER TABLE `leads`
+  ADD CONSTRAINT `leads_ibfk_1` FOREIGN KEY (`property_id`) REFERENCES `properties` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
