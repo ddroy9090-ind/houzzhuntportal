@@ -2,25 +2,50 @@
 include 'includes/auth.php';
 include 'config.php';
 
-$message = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name  = trim($_POST['name']);
-    $email = trim($_POST['email']);
-    $phone = trim($_POST['phone']);
-    $property_id = isset($_POST['property_id']) ? (int)$_POST['property_id'] : 0;
-    $note  = trim($_POST['message']);
 
-    $stmt = $conn->prepare("INSERT INTO leads (name,email,phone,property_id,message) VALUES (?,?,?,NULLIF(?,0),?)");
-    if ($stmt) {
-        $stmt->bind_param('sssis', $name, $email, $phone, $property_id, $note);
-        if ($stmt->execute()) {
-            $message = 'Lead added successfully!';
+// Available lead statuses
+$statuses = ['New', 'Contacted', 'Qualified', 'Lost'];
+$message  = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Update existing lead status
+    if (isset($_POST['update_status'])) {
+        $lead_id = (int)$_POST['lead_id'];
+        $status  = trim($_POST['status']);
+
+        $stmt = $conn->prepare("UPDATE leads SET status=? WHERE id=?");
+        if ($stmt) {
+            $stmt->bind_param('si', $status, $lead_id);
+            if ($stmt->execute()) {
+                $message = 'Lead status updated successfully!';
+            } else {
+                $message = 'Error updating status: ' . $stmt->error;
+            }
+            $stmt->close();
         } else {
-            $message = 'Error adding lead: ' . $stmt->error;
+            $message = 'Error preparing statement: ' . $conn->error;
         }
-        $stmt->close();
     } else {
-        $message = 'Error preparing statement: ' . $conn->error;
+        // Add new lead
+        $name       = trim($_POST['name']);
+        $email      = trim($_POST['email']);
+        $phone      = trim($_POST['phone']);
+        $property_id = isset($_POST['property_id']) ? (int)$_POST['property_id'] : 0;
+        $note       = trim($_POST['message']);
+        $status     = isset($_POST['status']) ? trim($_POST['status']) : 'New';
+
+        $stmt = $conn->prepare("INSERT INTO leads (name,email,phone,property_id,message,status) VALUES (?,?,?,NULLIF(?,0),?,?)");
+        if ($stmt) {
+            $stmt->bind_param('sssiss', $name, $email, $phone, $property_id, $note, $status);
+            if ($stmt->execute()) {
+                $message = 'Lead added successfully!';
+            } else {
+                $message = 'Error adding lead: ' . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $message = 'Error preparing statement: ' . $conn->error;
+        }
     }
 }
 
@@ -68,6 +93,7 @@ $leads = $conn->query("SELECT leads.*, properties.project_name FROM leads LEFT J
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Property</th>
+                                            <th>Status</th>
                                             <th>Date</th>
                                         </tr>
                                     </thead>
@@ -78,10 +104,21 @@ $leads = $conn->query("SELECT leads.*, properties.project_name FROM leads LEFT J
                                                 <td><?php echo htmlspecialchars($row['email']); ?></td>
                                                 <td><?php echo htmlspecialchars($row['phone']); ?></td>
                                                 <td><?php echo htmlspecialchars($row['project_name'] ?? ''); ?></td>
+                                                <td>
+                                                    <form method="POST" class="mb-0">
+                                                        <input type="hidden" name="lead_id" value="<?php echo $row['id']; ?>">
+                                                        <input type="hidden" name="update_status" value="1">
+                                                        <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                                                            <?php foreach ($statuses as $s): ?>
+                                                                <option value="<?php echo $s; ?>" <?php if ($row['status'] === $s) echo 'selected'; ?>><?php echo $s; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </form>
+                                                </td>
                                                 <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                             </tr>
                                         <?php endwhile; else: ?>
-                                            <tr><td colspan="5" class="text-center">No leads found</td></tr>
+                                            <tr><td colspan="6" class="text-center">No leads found</td></tr>
                                         <?php endif; ?>
                                     </tbody>
                                 </table>
@@ -119,6 +156,14 @@ $leads = $conn->query("SELECT leads.*, properties.project_name FROM leads LEFT J
                                         <?php if ($properties && $properties->num_rows > 0): while ($p = $properties->fetch_assoc()): ?>
                                             <option value="<?php echo $p['id']; ?>"><?php echo htmlspecialchars($p['project_name']); ?></option>
                                         <?php endwhile; endif; ?>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lead-status" class="form-label">Status</label>
+                                    <select class="form-select" id="lead-status" name="status">
+                                        <?php foreach ($statuses as $s): ?>
+                                            <option value="<?php echo $s; ?>"><?php echo $s; ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="mb-3">
