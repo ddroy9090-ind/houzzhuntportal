@@ -79,6 +79,21 @@ CREATE TABLE `leads` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Dumping data for table `leads`
 --
@@ -98,17 +113,18 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('Admin','Manager','Channel Partner') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_active` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `created_at`) VALUES
-(1, 'Rehman Shaoib', 'rehmanshoaib', 'shoaib@reliantsurveyors.com', '$2y$10$0zpNlMd46dES26IFRynwXebMeIdUO3JXCy.R96yPIJ9yqGP16tbkq', 'Admin', '2025-08-18 06:44:43'),
-(2, 'Dev Aabhroy', 'dev', 'dev@gmail.com', '$2y$10$5/Qxeccnas51So70xhHhGOHq1e6CoBfhThb..kEI2W4c9B45Y9IOa', 'Admin', '2025-08-22 05:14:43'),
-(3, 'Shoaib Akhtar', 'shoaibakhtar', 'shoaib@gmail.com', '$2y$10$FKoW7BU6sBHsQ6I5B3MVtuCZKp4z/ODfgcsmnhfnbgroOqNGTmdgC', 'Admin', '2025-08-22 10:09:35');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `role`, `created_at`, `last_active`) VALUES
+(1, 'Rehman Shaoib', 'rehmanshoaib', 'shoaib@reliantsurveyors.com', '$2y$10$0zpNlMd46dES26IFRynwXebMeIdUO3JXCy.R96yPIJ9yqGP16tbkq', 'Admin', '2025-08-18 06:44:43', NULL),
+(2, 'Dev Aabhroy', 'dev', 'dev@gmail.com', '$2y$10$5/Qxeccnas51So70xhHhGOHq1e6CoBfhThb..kEI2W4c9B45Y9IOa', 'Admin', '2025-08-22 05:14:43', NULL),
+(3, 'Shoaib Akhtar', 'shoaibakhtar', 'shoaib@gmail.com', '$2y$10$FKoW7BU6sBHsQ6I5B3MVtuCZKp4z/ODfgcsmnhfnbgroOqNGTmdgC', 'Admin', '2025-08-22 10:09:35', NULL);
 
 --
 -- Indexes for dumped tables
@@ -136,6 +152,14 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sender_id` (`sender_id`),
+  ADD KEY `receiver_id` (`receiver_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -149,6 +173,12 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT for table `leads`
 --
 ALTER TABLE `leads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
