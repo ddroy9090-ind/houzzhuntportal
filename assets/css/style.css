@@ -97,7 +97,8 @@ p {
 }
 
 .page-content {
-  background-color: #fff;
+  /* Light grey background for better contrast */
+  background-color: #f8f9fa;
 }
 
 .form-select:focus {
@@ -516,6 +517,7 @@ span.whiteYellow {
 
 .card {
   border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 section#project-info {
