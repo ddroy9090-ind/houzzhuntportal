@@ -34,6 +34,9 @@
     <!-- Style Css-->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 
+    <!-- Leaflet map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
     <!-- Material Design Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
 
