@@ -1,3 +1,4 @@
+<?php $userName = htmlspecialchars($_SESSION['name'] ?? 'User'); $userRole = htmlspecialchars($_SESSION['role'] ?? ''); ?>
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -462,15 +463,15 @@
                             <img class="rounded-circle header-profile-user"
                                 src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Abhinav Sharma</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php echo $userName; ?></span>
+                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text"><?php echo $userRole; ?></span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome Abhinav Sharma</h6>
-                        <a class="dropdown-item" href="javascript:void(0)"><i
+                        <h6 class="dropdown-header">Welcome <?php echo $userName; ?></h6>
+                        <a class="dropdown-item" href="profile.php"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
 
