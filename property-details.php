@@ -27,6 +27,12 @@ if (!$property) {
     include 'includes/common-footer.php';
     exit;
 }
+
+// Calculate estimated commission at 2% of the starting price
+$commission = 0;
+if (!empty($property['starting_price'])) {
+    $commission = floatval(str_replace(',', '', $property['starting_price'])) * 0.02;
+}
 ?>
 
 <div class="main-content">
@@ -61,6 +67,9 @@ if (!$property) {
                     <div class="col-md-5">
                         <p>Starting Price</p>
                         <h5><?= $property['starting_price']; ?></h5>
+
+                        <p>Estimated Commission (2%)</p>
+                        <h5><?= number_format($commission, 2); ?></h5>
 
                         <p>Payment Plan</p>
                         <h5><?= $property['payment_plan']; ?></h5>
