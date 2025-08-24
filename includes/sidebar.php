@@ -101,6 +101,20 @@ if ($propResult) {
                         <i class="ri-chat-3-line"></i> <span data-key="t-chat">Chat</span>
                     </a>
                 </li>
+<?php if ($userRole === "Channel Partner"): ?>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="kyc_upload.php">
+                        <i class="ri-file-upload-line"></i> <span data-key="t-kyc-upload">KYC Upload</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+                <?php if ($userRole === "Admin" || $userRole === "Manager"): ?>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="kyc_list.php">
+                        <i class="ri-file-user-line"></i> <span data-key="t-kyc-list">KYC Details</span>
+                    </a>
+                </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"
