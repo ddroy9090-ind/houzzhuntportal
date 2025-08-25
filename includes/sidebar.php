@@ -101,6 +101,13 @@ if ($propResult) {
                         <i class="ri-chat-3-line"></i> <span data-key="t-chat">Chat</span>
                     </a>
                 </li>
+ <?php if ($userRole === "Channel Partner"): ?>
+                 <li class="nav-item">
+                     <a class="nav-link menu-link" href="public/kyc.php">
+                         <i class="ri-file-user-line"></i> <span data-key="t-kyc">KYC</span>
+                     </a>
+                 </li>
+ <?php endif; ?>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button"

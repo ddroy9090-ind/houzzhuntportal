@@ -96,6 +96,20 @@ CREATE TABLE `messages` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kyc_documents`
+--
+
+CREATE TABLE `kyc_documents` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `document` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Dumping data for table `leads`
 --
@@ -154,6 +168,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `kyc_documents`
+--
+ALTER TABLE `kyc_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
@@ -178,6 +198,11 @@ ALTER TABLE `leads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `kyc_documents`
+-- 
+ALTER TABLE `kyc_documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
@@ -190,6 +215,10 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
  
 --
+-- Constraints for table `kyc_documents`
+ALTER TABLE `kyc_documents`
+  ADD CONSTRAINT `kyc_documents_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
 -- Constraints for table `leads`
 --
 ALTER TABLE `leads`
