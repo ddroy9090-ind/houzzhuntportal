@@ -1,3 +1,4 @@
+<?php $redirect = $_GET['redirect'] ?? ''; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -207,6 +208,7 @@
 
                         <!-- Login Form -->
                         <form class="login-form" action="login.php" method="POST">
+                            <input type="hidden" name="redirect" value="<?php echo htmlspecialchars($redirect); ?>">
                             <div class="mb-3 form-group">
                                 <label>Email Address</label>
                                 <input type="email" class="form-control" name="email" placeholder="partner@example.com" required>

@@ -21,8 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $user['role'];
             $_SESSION['name'] = $user['name'];
 
-            // Redirect to index.php (common dashboard)
-            header("Location: index.php");
+            // Redirect to the originally requested page, or fall back to the dashboard
+            $redirect = !empty($_POST['redirect']) ? $_POST['redirect'] : 'index.php';
+            header("Location: $redirect");
             exit;
         } else {
             echo "❌ Invalid password!";
