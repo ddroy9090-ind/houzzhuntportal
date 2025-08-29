@@ -62,7 +62,7 @@ $leads = $conn->query("SELECT leads.*, properties.project_name FROM leads LEFT J
                         <div class="card-body">
                             <div class="table-responsive table-card">
                                 <table class="table align-middle table-nowrap mb-0">
-                                    <thead class="table-light">
+                                    <thead class="">
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>

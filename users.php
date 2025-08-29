@@ -59,19 +59,13 @@
                                 <div class="table-responsive table-card mt-3 mb-1">
 
                                     <table class="table align-middle table-nowrap" id="customerTable">
-                                        <thead class="table-light">
+                                        <thead>
                                             <tr>
-                                                <th scope="col" style="width: 50px;">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="checkAll"
-                                                            value="option">
-                                                    </div>
-                                                </th>
+                                                
+                                                <th class="sort" data-sort="name">ID</th>
                                                 <th class="sort" data-sort="name">Name</th>
                                                 <th class="sort" data-sort="username">Username</th>
                                                 <th class="sort" data-sort="email">Email</th>
-                                                <!-- <th class="sort" data-sort="password">Password</th>
-                                                <th class="sort" data-sort="confirm_password">Confirm Password</th> -->
                                                 <th class="sort" data-sort="role">Role</th>
                                                 <th class="sort" data-sort="action">Action</th>
                                             </tr>

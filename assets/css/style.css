@@ -2,6 +2,67 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+
+/* ---------- Global thin gradient scrollbar (WebKit) ---------- */
+/* width for vertical scrollbar, height for horizontal */
+*::-webkit-scrollbar {
+  width: 8px;
+  /* thin — change to 6px if you want even thinner */
+  height: 8px;
+}
+
+/* track (background) */
+*::-webkit-scrollbar-track {
+  background: #0d2d2b;
+  /* dark track color */
+  border-radius: 10px;
+}
+
+/* thumb (the draggable handle) with smooth gradient */
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #0d2d2b 0%, #4a604f 40%, #edbb68 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+/* thumb hover (slightly brighter / more contrast) */
+*::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.05);
+  transform: translateZ(0);
+}
+
+/* corner (where vertical + horizontal meet) */
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ---------- Firefox support (uses 2 values: thumb track) ---------- */
+* {
+  scrollbar-width: thin;
+  /* 'auto' or 'thin' */
+  scrollbar-color: #edbb68 #0d2d2b;
+  /* thumb, track */
+}
+
+/* ---------- Optional: override for specific containers (if you want) ---------- */
+/* Example: make the chatBox thumb a bit thicker for usability on small elements */
+#chatBox::-webkit-scrollbar {
+  width: 10px;
+}
+
+#chatBox {
+  scrollbar-width: thin;
+  scrollbar-color: #edbb68 #0d2d2b;
+}
+
+/* ---------- Accessibility / Contrast notes ---------- */
+/* If the gradient thumb has low contrast in some parts on your background,
+   you can increase brightness or add an outline. Example: */
+*::-webkit-scrollbar-thumb:active {
+  box-shadow: 0 0 0 3px rgba(13, 45, 43, 0.12);
+}
+
+
 h1,
 h2 {
   font-family: "Montserrat", sans-serif !important;
@@ -45,7 +106,8 @@ p {
 }
 
 .btn-success {
-  background: linear-gradient(245deg, #0f635c, #067e74);
+  /* background: linear-gradient(245deg, #0f635c, #067e74); */
+  background: #0d2d2b;
   border: none;
 }
 
@@ -157,7 +219,7 @@ span.whiteYellow {
   color: #fff;
   position: relative;
   padding: 200px 0 250px 0;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .hero-description {
@@ -172,7 +234,7 @@ span.whiteYellow {
   margin-bottom: 15px;
 }
 
-.hero-description h5{
+.hero-description h5 {
   color: #fff;
   font-size: 20px;
   font-weight: 600;
@@ -199,7 +261,7 @@ span.whiteYellow {
 
 
 .property-gallery-section {
-  padding: 30px 0;
+  padding: 0px 0;
 }
 
 
@@ -327,130 +389,6 @@ span.whiteYellow {
 }
 
 
-.floorplan-container {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  /* min-height: 100vh; */
-}
-
-/* LEFT SIDE */
-.floorplan-left {
-  padding: 40px;
-}
-
-.floorplan-container .swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.floorplan-container .swiper-slide {
-  text-align: center;
-}
-
-.floorplan-container .swiper-slide img {
-  width: 70%;
-  height: 350px;
-}
-
-.floorplan-details {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  font-size: 14px;
-  color: #555;
-}
-
-.floorplan-details div strong {
-  display: block;
-  font-size: 16px;
-  color: #000;
-}
-
-.inquiry-btn {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: 1px solid #d07a6a;
-  color: #d07a6a;
-  border-radius: 30px;
-  background: transparent;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.inquiry-btn:hover {
-  background: #d07a6a;
-  color: #fff;
-}
-
-/* RIGHT SIDE */
-.floorplan-right {
-  background: linear-gradient(180deg, #0d2d2b, #edbb68);
-  /* background: linear-gradient(120deg, #0d2d2b 0%, #edbb68 55.06%); */
-  color: #fff;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.floorplan-right img {
-  width: 80%;
-  margin: 15px 0;
-  border-radius: 10px;
-}
-
-.floorplan-right h3 {
-  font-size: 22px;
-  line-height: 1.4;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.right-btn {
-  margin-top: 15px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #fff;
-  color: #d07a6a;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Swiper navigation arrows */
-.floorplan-container .swiper-button-next,
-.floorplan-container .swiper-button-prev {
-
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background-color: #0d2d2b;
-  opacity: 1;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  /* color: #000;
-    background: #fff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
-}
-
-.floorplan-container .swiper-button-next:after,
-.floorplan-container .swiper-button-prev:after {
-  font-size: 16px;
-  font-weight: bold;
-  display: none;
-}
-
-
 .custom-card {
   position: relative;
   border: none;
@@ -523,7 +461,7 @@ section#project-info {
 }
 
 .related-properties {
-  padding: 60px 0;
+  padding: 8px 0;
 }
 
 .related-properties .card-body h6 {
@@ -596,6 +534,7 @@ h2.heading-title {
   width: 100%;
   display: block;
   cursor: pointer;
+  height: 250px;
 }
 
 .property-top-details {
@@ -675,6 +614,7 @@ h2.heading-title {
 .card-title {
   color: #fff;
 }
+
 
 .form-card {
   background: #fff;
@@ -791,6 +731,292 @@ h2.heading-title {
   margin: 10px 10px;
 }
 
-.form-control:focus, .form-select:focus{
+.form-control:focus,
+.form-select:focus {
   box-shadow: none !important;
+}
+
+
+.chat-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 75vh;
+  /* 👈 kam kiya */
+}
+
+/* Sidebar */
+#userList {
+  max-height: 60vh;
+  /* 👈 kam height */
+  overflow-y: auto;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+}
+
+.user-item:hover {
+  background: #f0f4ff;
+}
+
+.user-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Chatbox */
+#chatBox {
+  height: 50vh;
+  /* 👈 kam height */
+  overflow-y: auto;
+  padding: 15px;
+  background: #f5f7fb;
+  border-radius: 8px;
+}
+
+.message {
+  max-width: 70%;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  display: inline-block;
+  clear: both;
+}
+
+.received {
+  background: #fff;
+  border: 1px solid #eee;
+  float: left;
+}
+
+
+
+/* Chat header */
+.chat-header {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Footer */
+.chat-footer {
+  border-top: 1px solid #eee;
+  padding: 10px;
+  background: #fff;
+}
+
+.chat-footer input {
+  border-radius: 20px;
+}
+
+.chat-footer button {
+  border-radius: 50%;
+  margin-left: 8px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.list-group-flush>.list-group-item {
+  background-color: #fff;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+  margin: 10px 10px 5px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 20px 10px;
+}
+
+.header-icons {
+  width: 40px;
+  height: 40px;
+  background: #0d2d2b;
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.header-icons img {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  border-radius: 0;
+  padding: 3px;
+}
+
+#sendBtn img {
+  position: relative;
+  right: 8px;
+}
+
+/* Chat box container */
+#chatBox {
+  background: #f5f7fa;
+  padding: 15px;
+  height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Common bubble styles */
+.message {
+  display: flex;
+  margin: 6px 0;
+  max-width: 95%;
+}
+
+.message .bubble {
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+/* Sent message (right side) */
+.message.sent {
+  justify-content: flex-end;
+}
+
+.message.sent .bubble {
+  background: #0d2d2b;
+  /* Bootstrap Primary */
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+/* Received message (left side) */
+.message.received {
+  justify-content: flex-start;
+}
+
+.message.received .bubble {
+  background: #e5e5ea;
+  color: #111;
+  border-bottom-left-radius: 4px;
+}
+
+.avatar-title {
+  border-radius: 50% !important;
+  cursor: pointer;
+}
+
+.table>thead {
+  border-color: var(--vz-border-color);
+  background-color: #0d2d2b;
+  color: #fff;
+}
+
+.footer {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+h4.card-title.mb-0.flex-grow-1 {
+  color: #004a44;
+  font-size: 24px;
+}
+
+.mortgage-section {
+  padding-top: 30px;
+}
+
+.floorplan-section .floorplan-left {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  max-width: 100%;
+  /* control stretching */
+  margin: 0 auto;
+}
+
+.floorplan-section .floorplan-left:hover {
+  /* transform: translateY(-3px); */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.floorplan-section .floorplan-img {
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.floorplan-section .floorplan-details {
+  margin-bottom: 12px;
+}
+
+.floorplan-section .floorplan-details li {
+  font-size: 14px;
+  color: #444;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.floorplan-section .floorplan-details li:last-child {
+  border-bottom: none;
+}
+
+.floorplan-section .floorplan-details strong {
+  color: #0d2d2b;
+  /* Dark green */
+  font-weight: 600;
+}
+
+.floorplan-section .view-btn {
+  background: linear-gradient(135deg, #0d2d2b, #145d58);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.floorplan-section .view-btn:hover {
+  background: linear-gradient(135deg, #edbb68, #d9a544);
+  color: #0d2d2b;
+}
+
+.floorplanmain img {
+  width: 100%;
+  height: 465px;
+  border-radius: 5px;
+}
+
+
+/* Responsive */
+@media(max-width: 768px) {
+  .col-md-4 {
+    display: none;
+  }
+
+  #chatBox {
+    height: 45vh;
+    /* 👈 mobile pe thoda aur chhota */
+  }
 }

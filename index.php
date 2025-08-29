@@ -10,6 +10,7 @@ $todayLeads      = $conn->query("SELECT COUNT(*) AS c FROM leads WHERE DATE(crea
 $recentProperties = $conn->query("SELECT id, project_name, location, starting_price FROM properties ORDER BY created_at DESC LIMIT 5");
 $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_name, leads.created_at FROM leads LEFT JOIN properties ON leads.property_id = properties.id ORDER BY leads.created_at DESC LIMIT 5");
 ?>
+
 <?php include 'includes/common-header.php'; ?>
 <div class="main-content">
     <div class="page-content">
@@ -26,7 +27,7 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
                 <div class="col-xl-3 col-md-6">
                     <div class="card card-animate">
                         <div class="card-body">
-                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Properties</p>
+                            <p class="mb-0">Total Properties</p>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php echo $totalProperties; ?>">0</span></h4>
@@ -45,7 +46,7 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
                 <div class="col-xl-3 col-md-6">
                     <div class="card card-animate">
                         <div class="card-body">
-                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Total Leads</p>
+                            <p class="mb-0">Total Leads</p>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php echo $totalLeads; ?>">0</span></h4>
@@ -64,7 +65,7 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
                 <div class="col-xl-3 col-md-6">
                     <div class="card card-animate">
                         <div class="card-body">
-                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Channel Partners</p>
+                            <p class="mb-0">Channel Partners</p>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php echo $totalUsers; ?>">0</span></h4>
@@ -83,10 +84,11 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
                 <div class="col-xl-3 col-md-6">
                     <div class="card card-animate">
                         <div class="card-body">
-                            <p class="text-uppercase fw-medium text-muted text-truncate mb-0">Leads Today</p>
+                            <p class="mb-0">Leads Today</p>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
                                     <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="<?php echo $todayLeads; ?>">0</span></h4>
+                                    <a href="leads.php" class="text-decoration-underline">View leads</a>
                                 </div>
                                 <div class="avatar-sm flex-shrink-0">
                                     <span class="avatar-title bg-primary-subtle rounded fs-3">
@@ -100,15 +102,15 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
             </div>
 
             <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">Latest Properties</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table-card">
-                                <table class="table table-centered table-nowrap mb-0">
-                                    <thead class="table-light">
+                                <table class="table table-centered table-nowrap mb-0 table-hover">
+                                    <thead>
                                         <tr>
                                             <th>Project</th>
                                             <th>Location</th>
@@ -129,15 +131,15 @@ $recentLeads = $conn->query("SELECT leads.name, leads.email, properties.project_
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">Recent Leads</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table-card">
-                                <table class="table table-centered table-nowrap mb-0">
-                                    <thead class="table-light">
+                                <table class="table table-centered table-nowrap mb-0 table-hover">
+                                    <thead>
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>

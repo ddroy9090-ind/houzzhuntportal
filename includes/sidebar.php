@@ -81,13 +81,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="index.php">
-                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+                        <i class="ri-home-2-fill"></i> <span data-key="t-dashboards">Dashboards</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="chat.php">
-                        <i class="ri-chat-3-line"></i> <span data-key="t-chat">Chat</span>
+                        <i class=" ri-chat-2-fill"></i> <span data-key="t-chat">Chat</span>
                     </a>
                 </li>
 
@@ -104,84 +104,25 @@
                             <li class="nav-item">
                                 <a href="add-property.php" class="nav-link" data-key="t-starter"> Add Properties </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="pages-starter.html" class="nav-link" data-key="t-starter"> View Properties </a>
-                            </li> -->
-
-                            <!-- <li class="nav-item">
-                                <a href="pages-timeline.html" class="nav-link" data-key="t-timeline"> Timeline
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-faqs.html" class="nav-link" data-key="t-faqs"> FAQs </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-pricing.html" class="nav-link" data-key="t-pricing"> Pricing </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-gallery.html" class="nav-link" data-key="t-gallery"> Gallery </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-maintenance.html" class="nav-link" data-key="t-maintenance">
-                                    Maintenance
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-coming-soon.html" class="nav-link" data-key="t-coming-soon">
-                                    Coming Soon
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-sitemap.html" class="nav-link" data-key="t-sitemap"> Sitemap </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-search-results.html" class="nav-link"
-                                    data-key="t-search-results"> Search Results </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-privacy-policy.html" class="nav-link"
-                                    data-key="t-privacy-policy">Privacy Policy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages-term-conditions.html" class="nav-link"
-                                    data-key="t-term-conditions">Term & Conditions</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarBlogs" class="nav-link" data-bs-toggle="collapse" role="button"
-                                    aria-expanded="false" aria-controls="sidebarBlogs">
-                                    <span data-key="t-blogs">Blogs</span> <span
-                                        class="badge badge-pill bg-success" data-key="t-new">New</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarBlogs">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="pages-blog-list.html" class="nav-link"
-                                                data-key="t-list-view">List View</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages-blog-grid.html" class="nav-link"
-                                                data-key="t-grid-view">Grid View</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="pages-blog-overview.html" class="nav-link"
-                                                data-key="t-overview">Overview</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li> -->
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="leads.php">
-                        <i class="ri-contacts-line"></i> <span data-key="t-leads">Leads</span>
+                        <i class=" ri-team-fill"></i> <span data-key="t-leads">Leads</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="users.php">
-                        <i class="ri-account-circle-line"></i> <span data-key="t-authentication">User</span>
+                        <i class="ri-user-3-fill"></i> <span data-key="t-authentication">User</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="mortgage-calculator.php">
+                        <i class="ri-calculator-fill"></i> <span data-key="t-authentication">Mortgage Calculator</span>
                     </a>
                 </li>
 

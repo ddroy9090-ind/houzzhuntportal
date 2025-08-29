@@ -236,6 +236,43 @@
         </div>
     </section>
 
+    <!-- Floorplan Section -->
+    <div class="floorplan-container">
+        <div class="floorplan-left">
+            <div class="swiper mySwiper1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <?php if (!empty($property['floor_plan'])): ?>
+                        <img src="uploads/<?= $property['floor_plan']; ?>" alt="Floorplan">
+                        <?php endif; ?>
+                        <div class="floorplan-details">
+                            <div><strong>
+                                    <?= $property['starting_price']; ?>
+                                </strong> Starting Price (Floor Plan)
+                            </div>
+                            <div><strong>
+                                    <?= $property['aed_per_sqft']; ?>
+                                </strong> AED per Sqft</div>
+                            <div><strong>
+                                    <?= $property['starting_area']; ?>
+                                </strong> Starting area</div>
+                        </div>
+                        <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank"
+                            class="gradient-btn btn-green-glossy mt-3">View Floor Plan</a>
+                    </div>
+                </div>
+                <div class="swiper-button-prev">&#8592;</div>
+                <div class="swiper-button-next">&#8594;</div>
+            </div>
+        </div>
+
+        <div class="floorplan-right">
+            <h3>Get all the floor plans <br> and the best offers in this project</h3>
+            <img src="https://houzzhunt.com/assets/images/homepage/help-contact.webp" alt="3D Plan 1">
+            <button class="right-btn">→</button>
+        </div>
+    </div>
+
 </body>
 
 </html>

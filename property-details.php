@@ -85,24 +85,22 @@ if (!$property) {
         <section class="property-gallery-section">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-lg-8 position-relative">
+                    <div class="col-12 col-lg-8 position-relative p-0">
                         <?php if (!empty($property['main_picture'])): ?>
                             <img src="uploads/<?= $property['main_picture']; ?>" alt="Main Picture"
-                                class="img-fluid w-100 rounded">
+                                class="img-fluid w-100 h-100">
                         <?php endif; ?>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="row g-3">
+                    <div class="col-12 col-lg-4 p-0">
+                        <div class="row">
                             <div class="col-12">
                                 <?php if (!empty($property['image2'])): ?>
-                                    <img src="uploads/<?= $property['image2']; ?>" alt="Image 2"
-                                        class="img-fluid w-100 rounded">
+                                    <img src="uploads/<?= $property['image2']; ?>" alt="Image 2" class="img-fluid w-100">
                                 <?php endif; ?>
                             </div>
                             <div class="col-12">
                                 <?php if (!empty($property['image3'])): ?>
-                                    <img src="uploads/<?= $property['image3']; ?>" alt="Image 3"
-                                        class="img-fluid w-100 rounded">
+                                    <img src="uploads/<?= $property['image3']; ?>" alt="Image 3" class="img-fluid w-100">
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -137,35 +135,44 @@ if (!$property) {
         </section>
 
         <!-- Floorplan Section -->
-        <div class="floorplan-container">
-            <div class="floorplan-left">
-                <div class="swiper mySwiper1">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+        <div class="floorplan-section py-5">
+            <div class="container-fluid">
+                <div class="row justify-content-center ">
+                    <div class="col-12 text-center">
+                        <h2 class="payment-title heading-title"><span>Floor Plan</span></h2>
+                    </div>
+                </div>
+                <div class="row g-4 align-items-center">
+                    <!-- Left Side -->
+                    <div class="col-lg-4">
+                        <div class="floorplan-left">
                             <?php if (!empty($property['floor_plan'])): ?>
-                                <img src="uploads/<?= $property['floor_plan']; ?>" alt="Floorplan">
+                                <img src="uploads/<?= $property['floor_plan']; ?>" alt="Floorplan"
+                                    class="w-100 floorplan-img">
                             <?php endif; ?>
-                            <div class="floorplan-details">
-                                <div><strong><?= $property['starting_price']; ?></strong> Starting Price (Floor Plan)
-                                </div>
-                                <div><strong><?= $property['aed_per_sqft']; ?></strong> AED per Sqft</div>
-                                <div><strong><?= $property['starting_area']; ?></strong> Starting area</div>
-                            </div>
-                            <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank"
-                                class="gradient-btn btn-green-glossy mt-3">View Floor Plan</a>
+
+                            <ul class="floorplan-details list-unstyled small mb-3">
+                                <li><strong><?= $property['starting_price']; ?></strong> Starting Price (Floor Plan)
+                                </li>
+                                <li><strong><?= $property['aed_per_sqft']; ?></strong> AED per Sqft</li>
+                                <li><strong><?= $property['starting_area']; ?></strong> Starting Area</li>
+                            </ul>
+
+                            <a href="uploads/<?= $property['floor_plan']; ?>" target="_blank" class="btn view-btn">View
+                                Floor Plan</a>
                         </div>
                     </div>
-                    <div class="swiper-button-prev">&#8592;</div>
-                    <div class="swiper-button-next">&#8594;</div>
+                    <div class="col-lg-8">
+                        <div class="floorplanmain">
+                            <a href="#">
+                                <img src="assets/images/offplan/floorplan.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="floorplan-right">
-                <h3>Get all the floor plans <br> and the best offers in this project</h3>
-                <img src="https://houzzhunt.com/assets/images/homepage/help-contact.webp" alt="3D Plan 1">
-                <button class="right-btn">→</button>
-            </div>
         </div>
+
 
 
         <!-- Payment Plan Section -->
@@ -250,7 +257,7 @@ if (!$property) {
         <section class="related-properties">
             <div class="container">
 
-                <div class="row justify-content-center mb-4">
+                <div class="row justify-content-center">
                     <div class="col-12 text-center">
                         <h2 class="payment-title heading-title"><span>Other properties that may interest you</span></h2>
                     </div>
@@ -311,7 +318,7 @@ if (!$property) {
         </section>
 
 
-        <section class="mortgage-section py-5">
+        <section class="mortgage-section">
             <div class="container">
                 <div class="row g-4">
                     <!-- Card 1 -->
